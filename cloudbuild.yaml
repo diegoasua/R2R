@@ -22,7 +22,7 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'
       - '--update-secrets'
-      - 'PGVECTOR_USER=pgvector_user:latest,PGVECTOR_PASSWORD=pgvector_password:latest,PGVECTOR_HOST=pgvector_host:latest,PGVECTOR_PORT=pgvector_port:latest,PGVECTOR_DBNAME=pgvector_dbname:latest,OPENAI_API_KEY=openai_api_key:latest'
+      - 'PGVECTOR_USER=PGVECTOR_USER:latest,PGVECTOR_PASSWORD=PGVECTOR_PASSWORD:latest,PGVECTOR_HOST=PGVECTOR_HOST:latest,PGVECTOR_PORT=PGVECTOR_PORT:latest,PGVECTOR_DBNAME=PGVECTOR_DBNAME:latest,OPENAI_API_KEY=OPENAI_API_KEY:latest'
 
 # Images to be built by this Cloud Build
 images:

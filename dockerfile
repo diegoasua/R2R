@@ -21,10 +21,10 @@ RUN poetry config virtualenvs.create false \
 # COPY .env.example .env
 
 # Make port 8000 available to the world outside this container
-EXPOSE 8000
+EXPOSE 8080
 
 # Define environment variable
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "examples.academy.app:app", "--host", "0.0.0.0", "--port", "8080"]
