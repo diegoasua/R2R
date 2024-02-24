@@ -1,0 +1,29 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/r2r-service', '.']
+
+  # Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/r2r-service']
+
+  # Deploy the image to Cloud Run with environment variables from Secret Manager
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'r2r-service'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/r2r-service'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--update-secrets'
+      - 'PGVECTOR_USER=pgvector_user:latest,PGVECTOR_PASSWORD=pgvector_password:latest,PGVECTOR_HOST=pgvector_host:latest,PGVECTOR_PORT=pgvector_port:latest,PGVECTOR_DBNAME=pgvector_dbname:latest,OPENAI_API_KEY=openai_api_key:latest'
+
+# Images to be built by this Cloud Build
+images:
+  - 'gcr.io/$PROJECT_ID/r2r-service'
