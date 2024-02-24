@@ -18,7 +18,7 @@ RUN poetry config virtualenvs.create false \
 
 # Copy the .env.example to .env to apply configurations
 # Note: In production, you should use secure ways to manage secrets and environment variables
-COPY .env.example .env
+# COPY .env.example .env
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
